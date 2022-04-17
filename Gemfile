@@ -36,8 +36,8 @@ gem "redis", "~> 4.0"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 gem "kredis"
 
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+# Used to hash passwords [https://github.com/technion/ruby-argon2]
+gem "argon2", "~> 2.1.1"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
