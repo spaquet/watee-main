@@ -11,12 +11,18 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.boolean   :confirmed, null: false, default: false
       t.string    :confirmation_token, null: false
       t.timestamp :confirmation_token_expiration, null: false
-      t.timestamp :confirmation_at
+      t.timestamp :confirmed_at
 
       # Password reset
       t.string    :password_reset_token
       t.timestamp :password_reset_token_expiration
       t.timestamp :password_reset_at
+
+      # Account is locked
+      t.boolean   :locked, null: false, default: false
+      t.timestamp :locked_at
+      t.integer   :failed_attempts, null: false, default: 0
+      
 
       t.timestamps
 
@@ -27,6 +33,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.index :confirmed
       t.index :confirmation_token,   unique: true
       t.index :password_reset_token, unique: true
+      t.index :locked
     end
   end
 end

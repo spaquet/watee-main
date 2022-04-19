@@ -1,0 +1,17 @@
+<!-- app/views/users/new.html.erb -->
+<%= form_with model: @user, url: signup_path, html: { autocomplete: "on" } do |form| %>
+  <%= render partial: "form_errors", locals: { object: form.object } %>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email, required: true, autocomplete: "email" %>
+  </div>
+  <div>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, required: true, autocomplete: "nickname" %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password, required: true, autocomplete: "new-password" %>
+  </div>
+  <%= form.submit "Sign Up" %>
+<% end %>
