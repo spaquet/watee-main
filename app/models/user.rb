@@ -35,7 +35,6 @@ class User < ApplicationRecord
   # Hash the password using Argon2
   def generate_password_digest
     require 'argon2'
-    logger.debug "Password: #{password} from generate_password_digest"
     if password.present?
       self.password_digest = Argon2::Password.create(password)
     end
