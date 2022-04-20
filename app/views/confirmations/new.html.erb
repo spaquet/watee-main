@@ -1,2 +1,5 @@
-<h1>Confirmations#new</h1>
-<p>Find me in app/views/confirmations/new.html.erb</p>
+<!-- app/views/confirmations/new.html.erb -->
+<%= form_with model: @user, url: confirmations_path do |form| %>
+  <%= form.email_field :email, required: true %>
+  <%= form.submit "Confirm Email" %>
+<% end %>

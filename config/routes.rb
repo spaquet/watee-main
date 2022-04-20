@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  # Defines the signup path route ("/signup")
+  # Signup routes ("/signup")
   post "signup", to: "users#create"
   get "signup", to: "users#new"
+
+  # Confirmation routes
+  resources :confirmations, only: [:create, :edit, :new], param: :confirmation_token
 end
