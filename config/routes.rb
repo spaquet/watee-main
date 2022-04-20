@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   post "signup", to: "users#create"
   get "signup", to: "users#new"
 
+  # Session routes ("/login")
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+  get "login", to: "sessions#new"
+
   # Confirmation routes
   resources :confirmations, only: [:create, :edit, :new], param: :confirmation_token
 end
