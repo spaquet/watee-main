@@ -30,25 +30,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_17_230904) do
     t.string "password_digest"
     t.boolean "blocked", default: false, null: false
     t.boolean "confirmed", default: false, null: false
-    t.string "confirmation_token", null: false
-    t.datetime "confirmation_token_expiration", precision: nil, null: false
     t.datetime "confirmed_at", precision: nil
-    t.string "password_reset_token"
-    t.datetime "password_reset_token_expiration", precision: nil
-    t.datetime "password_reset_at", precision: nil
     t.boolean "locked", default: false, null: false
     t.datetime "locked_at", precision: nil
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blocked"], name: "index_users_on_blocked"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["confirmed"], name: "index_users_on_confirmed"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["locked"], name: "index_users_on_locked"
     t.index ["nickname"], name: "index_users_on_nickname"
     t.index ["organization_id"], name: "index_users_on_organization_id"
-    t.index ["password_reset_token"], name: "index_users_on_password_reset_token", unique: true
   end
 
   add_foreign_key "users", "organizations"

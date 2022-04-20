@@ -5,10 +5,10 @@ class User < ApplicationRecord
   # Callbacks
   before_save :downcase_email, if: :will_save_change_to_email?
   before_save :generate_password_digest
-  after_validation :generate_confirmation_token, on: :create
 
   # Mailer configuration
   MAILER_FROM_EMAIL = "no-reply@bredshop.com"
+  CONFIRMATION_TOKEN_EXPIRATION = 1.day
 
   # Relations
   belongs_to :organization, optional: true
@@ -22,21 +22,17 @@ class User < ApplicationRecord
     update_columns(confirmed_at: Time.current, confirmed: true)
   end
 
+  # Send a confirmation email to the user
+  def send_confirmation_email!
+    confirmation_token = signed_id(purpose: :email_confirmation, expires_in: CONFIRMATION_TOKEN_EXPIRATION)
+    UserMailer.confirmation(self, confirmation_token).deliver_now
+  end
+
   private
   
   # Make sure we save all emails in lowercase
   def downcase_email
     self.email = email.downcase
-  end
-  
-  # Generate a confirmation token for this user
-  def generate_confirmation_token
-    # Generate the token & expiration date
-    self.confirmation_token = Digest::UUID.uuid_v4
-    self.confirmation_token_expiration = Time.current + 1.day
-
-    # Send the confirmation email
-    send_confirmation_email!
   end
 
   # Hash the password using Argon2
@@ -45,11 +41,6 @@ class User < ApplicationRecord
     if password.present?
       self.password_digest = Argon2::Password.create(password)
     end
-  end
-
-  # Send a confirmation email to the user
-  def send_confirmation_email!
-    UserMailer.confirmation(self).deliver_now
   end
 
 end
