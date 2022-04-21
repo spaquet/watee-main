@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :destroy, :update]
   before_action :redirect_if_authenticated, only: [:create, :new]
 
   def create

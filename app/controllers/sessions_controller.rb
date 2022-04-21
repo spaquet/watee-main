@@ -6,12 +6,16 @@ class SessionsController < ApplicationController
     if @user
       if !@user.confirmed
         redirect_to new_confirmation_path, alert: "Incorrect email or password."
-      elsif @user.authenticate(params[:user][:password])
-        login @user
-        redirect_to root_path, notice: "Signed in."
+      elsif @user.locked
+        redirect_to :new, alert: "Your account is locked."
       else
-        flash.now[:alert] = "Incorrect email or password."
-        render :new, status: :unprocessable_entity
+        if @user.authenticate(params[:user][:password])
+          login @user
+          redirect_to root_path, notice: "Signed in."
+        else 
+          flash.now[:alert] = "Incorrect email or password."
+          render :new, status: :unprocessable_entity
+        end
       end
     else
       flash.now[:alert] = "Incorrect email or password."

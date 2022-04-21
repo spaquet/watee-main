@@ -9,16 +9,18 @@ Rails.application.routes.draw do
 
   # Signup routes ("/signup")
   post "signup", to: "users#create"
-  get "signup", to: "users#new"
+  get  "signup", to: "users#new"
 
   # Session routes ("/login")
   post "login", to: "sessions#create"
+  get  "login", to: "sessions#new"
+
+  # Logout route ("/logout")
   delete "logout", to: "sessions#destroy"
-  get "login", to: "sessions#new"
 
   # Account routes ("/account")
-  put "account", to: "users#update"
-  get "account", to: "users#edit"
+  put    "account", to: "users#update"
+  get    "account", to: "users#edit"
   delete "account", to: "users#destroy"
 
   # Password routes ("/passwords")
