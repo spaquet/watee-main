@@ -9,6 +9,7 @@ class User < ApplicationRecord
   # Mailer configuration
   MAILER_FROM_EMAIL = "no-reply@bredshop.com"
   CONFIRMATION_TOKEN_EXPIRATION = 1.day
+  PASSWORD_RESET_TOKEN_EXPIRATION = 20.minutes
 
   # Relations
   belongs_to :organization, optional: true
@@ -26,6 +27,12 @@ class User < ApplicationRecord
   def send_confirmation_email!
     confirmation_token = signed_id(purpose: :email_confirmation, expires_in: CONFIRMATION_TOKEN_EXPIRATION)
     UserMailer.confirmation(self, confirmation_token).deliver_now
+  end
+
+  # Send a password reset email to the user
+  def send_password_reset_email!
+    password_reset_token = signed_id(purpose: :reset_password, expires_in: PASSWORD_RESET_TOKEN_EXPIRATION)
+    UserMailer.password_reset(self, password_reset_token).deliver_now
   end
 
   private

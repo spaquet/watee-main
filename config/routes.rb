@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
   get "login", to: "sessions#new"
 
+  # Password routes ("/passwords")
+  resources :passwords, only: [:create, :edit, :new, :update], param: :password_reset_token
+
   # Confirmation routes
   resources :confirmations, only: [:create, :edit, :new], param: :confirmation_token
 end
