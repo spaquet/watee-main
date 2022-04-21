@@ -18,6 +18,14 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: {with: URI::MailTo::EMAIL_REGEXP}
   validates :password, presence: true, length: { minimum: 6, maximum: 35 }, on: :create
 
+  ## Functions
+
+  # Authenticate the user (aka validates the password)
+  def authenticate(password)
+    require 'argon2'
+    Argon2::Password.verify_password(password, self.password_digest)
+  end
+
   # Update the confirmation status for this user
   def confirm!
     update_columns(confirmed_at: Time.current, confirmed: true)

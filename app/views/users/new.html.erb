@@ -1,6 +1,6 @@
 <!-- app/views/users/new.html.erb -->
 <%= form_with model: @user, url: signup_path, html: { autocomplete: "on" } do |form| %>
-  <%= render partial: "form_errors", locals: { object: form.object } %>
+  <%= render partial: "shared/form_errors", locals: { object: form.object } %>
   <div>
     <%= form.label :email %>
     <%= form.email_field :email, required: true, autocomplete: "email" %>
