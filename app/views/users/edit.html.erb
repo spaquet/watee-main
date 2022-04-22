@@ -23,6 +23,23 @@
     <%= form.password_field :password, autocomplete: "new-password" %>
   </div>
   <%= form.submit "Change Password" %>
+  <h2>Current Logins</h2>
+  <% if @active_sessions.any? %>
+    <%= button_to "Log out of all other sessions", destroy_all_active_sessions_path, method: :delete %>
+    <table>
+      <thead>
+        <tr>
+          <th>User Agent</th>
+          <th>IP Address</th>
+          <th>Signed In At</th>
+          <th>Sign Out</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @active_sessions %>
+      </tbody>
+    </table>
+  <% end %>
   <h4>DANGER ZONE</h4>
   <div>
     <%= link_to "Delete Account", account_path, data: { turbo_method: :delete, confirm: "Are you sure?" } %>

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @active_sessions = @user.active_sessions.order(created_at: :desc)
   end
 
   def new
@@ -28,6 +29,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    @active_sessions = @user.active_sessions.order(created_at: :desc)
     msg = "Account updated successfully." # default message
 
     # If the user's account is locked, do nothing but warn them

@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
       else
         if @user.authenticate(params[:user][:password])
           after_login_path = session[:user_return_to] || root_path
-          login @user
-          remember(@user) if params[:user][:remember_me] == "1"
+          active_session = login @user
+          remember(active_session) if params[:user][:remember_me] == "1"
           redirect_to root_path, notice: "Signed in."
         else 
           flash.now[:alert] = "Incorrect email or password."
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    forget(current_user)
+    forget_active_session
     logout
     redirect_to root_path, notice: "Signed out."
   end

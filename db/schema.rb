@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_22_174902) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_22_183946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.string "ip_address"
+    t.string "remember_token", null: false
+    t.index ["remember_token"], name: "index_active_sessions_on_remember_token", unique: true
+    t.index ["user_id"], name: "index_active_sessions_on_user_id"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
@@ -36,15 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_22_174902) do
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "remember_token", null: false
     t.index ["blocked"], name: "index_users_on_blocked"
     t.index ["confirmed"], name: "index_users_on_confirmed"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["locked"], name: "index_users_on_locked"
     t.index ["nickname"], name: "index_users_on_nickname"
     t.index ["organization_id"], name: "index_users_on_organization_id"
-    t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
   end
 
+  add_foreign_key "active_sessions", "users", on_delete: :cascade
   add_foreign_key "users", "organizations"
 end

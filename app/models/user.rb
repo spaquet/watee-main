@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   # Relations
   belongs_to :organization, optional: true
-  has_secure_token :remember_token
+  has_many :active_sessions, dependent: :destroy
 
   # Validations
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: {with: URI::MailTo::EMAIL_REGEXP}

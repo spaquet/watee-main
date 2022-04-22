@@ -28,4 +28,12 @@ Rails.application.routes.draw do
 
   # Confirmation routes
   resources :confirmations, only: [:create, :edit, :new], param: :confirmation_token
+
+  # Active seessions
+  resources :active_sessions, only: [:destroy] do
+    collection do
+      delete "destroy_all"
+    end
+  end
+
 end
