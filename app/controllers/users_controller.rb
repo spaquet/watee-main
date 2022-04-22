@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :redirect_if_authenticated, only: [:create, :new]
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(create_user_params)
     if @user.save
       @user.send_confirmation_email!
       redirect_to root_path, notice: "Please check your email for confirmation instructions."
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   private
 
   def create_user_params
-    params.require(:user).permit(:email, :password, :nickname)
+    params.require(:user).permit(:email, :password, :nickname, :remember_me)
   end
 
   def update_user_params

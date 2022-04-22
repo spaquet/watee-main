@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
         redirect_to :new, alert: "Your account is locked."
       else
         if @user.authenticate(params[:user][:password])
+          after_login_path = session[:user_return_to] || root_path
           login @user
           remember(@user) if params[:user][:remember_me] == "1"
           redirect_to root_path, notice: "Signed in."
