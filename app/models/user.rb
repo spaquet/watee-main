@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # We do not save the password, but the password diget after generating it using Argon2
   attr_accessor :password
+  attr_accessor :current_password
 
   # Callbacks
   before_save :downcase_email, if: :will_save_change_to_email?

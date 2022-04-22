@@ -10,7 +10,21 @@
   </div>
   <div>
     <%= form.label :nickname %>
-    <%= form.text_field :nickname, autofocus: :on %>
+    <%= form.text_field :nickname, autofocus: :on, onfocus: "this.setSelectionRange(this.value.length,this.value.length);" %>
   </div>
   <%= form.submit "Update Account" %>
+  <h4>PASSWORD CHANGE</h4>
+  <div>
+    <%= form.label :current_password %>
+    <%= form.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+  <div>
+    <%= form.label :password, "New Password" %>
+    <%= form.password_field :password, autocomplete: "new-password" %>
+  </div>
+  <%= form.submit "Change Password" %>
+  <h4>DANGER ZONE</h4>
+  <div>
+    <%= link_to "Delete Account", account_path, data: { turbo_method: :delete, confirm: "Are you sure?" } %>
+  </div>
 <% end %>

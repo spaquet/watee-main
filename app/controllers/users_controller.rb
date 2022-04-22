@@ -37,6 +37,16 @@ class UsersController < ApplicationController
         msg = "Email & account updated successfully. Please check your mail for confirmation instructions."
       end
 
+      # Make sure that current_password and password are present if the user is updating their password
+      if update_user_params[:password].present? && update_user_params[:current_password].present?
+        # Validate the current password
+        if !@user.authenticate(update_user_params[:current_password])
+          flash.now[:error] = "The current password you entered is incorrect."
+          render :edit, status: :unprocessable_entity
+          return
+        end
+      end
+
       # Save the user's changes
       if @user.update(update_user_params)
         @user.send_confirmation_email! unless !update_user_params[:email].present?
@@ -57,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   def update_user_params
-    params.require(:user).permit(:email, :nickname)
+    params.require(:user).permit(:email, :nickname, :current_password, :password)
   end
 
 end

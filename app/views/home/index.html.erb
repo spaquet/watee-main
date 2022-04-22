@@ -3,8 +3,7 @@
 <% if user_signed_in? %>
   <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %><br>
   <div>
-    <%= link_to "Edit", account_path %><br>
-    <%= link_to "Delete Account", account_path, data: { turbo_method: :delete } %>
+    <%= link_to "Edit", account_path %>
   </div>
 <% else %>
   <%= link_to "Login", login_path %> <br>
