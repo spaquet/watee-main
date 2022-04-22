@@ -1,0 +1,47 @@
+<!-- app/views/users/edit.html.erb -->
+<%= form_with model: @user, url: account_path, method: :put do |form| %>
+  <%= render partial: "shared/form_errors", locals: { object: form.object } %>
+  <div>
+    <%= form.label :email, "Current Email" %>
+    <%= form.email_field :email, disabled: true %>
+    <p>
+      Be careful when changing your email address. You will need to confirm the new one in order to access your account.
+    </p>
+  </div>
+  <div>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, autofocus: :on, onfocus: "this.setSelectionRange(this.value.length,this.value.length);" %>
+  </div>
+  <%= form.submit "Update Account" %>
+  <h4>PASSWORD CHANGE</h4>
+  <div>
+    <%= form.label :current_password %>
+    <%= form.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+  <div>
+    <%= form.label :password, "New Password" %>
+    <%= form.password_field :password, autocomplete: "new-password" %>
+  </div>
+  <%= form.submit "Change Password" %>
+  <h2>Current Logins</h2>
+  <% if @active_sessions.any? %>
+    <%= button_to "Log out of all other sessions", destroy_all_active_sessions_path, method: :delete %>
+    <table>
+      <thead>
+        <tr>
+          <th>User Agent</th>
+          <th>IP Address</th>
+          <th>Signed In At</th>
+          <th>Sign Out</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @active_sessions %>
+      </tbody>
+    </table>
+  <% end %>
+  <h4>DANGER ZONE</h4>
+  <div>
+    <%= link_to "Delete Account", account_path, data: { turbo_method: :delete, confirm: "Are you sure?" } %>
+  </div>
+<% end %>
