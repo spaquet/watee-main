@@ -26,11 +26,27 @@ module Authentication
   end
 
   def current_user
-    Current.user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
+    # Current.user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
+    Current.user ||= if session[:current_user_id].present?
+      User.find_by(id: session[:current_user_id])
+    elsif cookies.permanent.encrypted[:remember_token].present?
+      User.find_by(remember_token: cookies.permanent.encrypted[:remember_token])
+    end
   end
 
   def user_signed_in?
     Current.user.present?
+  end
+
+  # Remember me feature
+  def forget(user)
+    cookies.delete :remember_token
+    user.regenerate_remember_token
+  end
+
+  def remember(user)
+    user.regenerate_remember_token
+    cookies.permanent.encrypted[:remember_token] = user.remember_token
   end
 
 end
