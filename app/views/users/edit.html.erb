@@ -4,23 +4,13 @@
   <div>
     <%= form.label :email, "Current Email" %>
     <%= form.email_field :email, disabled: true %>
+    <p>
+      Be careful when changing your email address. You will need to confirm the new one in order to access your account.
+    </p>
   </div>
   <div>
-    <%= form.label :unconfirmed_email, "New Email" %>
-    <%= form.text_field :unconfirmed_email %>
-  </div>
-  <div>
-    <%= form.label :password, "Password (leave blank if you don't want to change it)" %>
-    <%= form.password_field :password %>
-  </div>
-  <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-  <hr/>
-  <div>
-    <%= form.label :current_password, "Current password (we need your current password to confirm your changes)" %>
-    <%= form.password_field :current_password, required: true %>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, autofocus: :on %>
   </div>
   <%= form.submit "Update Account" %>
 <% end %>
