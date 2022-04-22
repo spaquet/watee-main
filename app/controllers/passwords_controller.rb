@@ -1,3 +1,7 @@
+# Used to reset a password for a user, when this user is not logged in.
+# To change their passwords, users have to use their profile page and the users_controller.rb
+# is in charge of updating their passwords.
+
 class PasswordsController < ApplicationController
   before_action :redirect_if_authenticated
 
