@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       if update_user_params[:password].present? && update_user_params[:current_password].present?
         # Validate the current password
         if !@user.authenticate(update_user_params[:current_password])
-          flash.now[:error] = "The current password you entered is incorrect."
+          flash.now[:alert] = "The current password you entered is incorrect."
           render :edit, status: :unprocessable_entity
           return
         end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
         render :edit, status: :unprocessable_entity
       end
     else
-      flash.now[:error] = "Your account has been locked. Please contact support."
+      flash.now[:alert] = "Your account has been locked. Please contact support."
       render :edit, status: :unprocessable_entity
     end
   end

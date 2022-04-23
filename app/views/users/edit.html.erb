@@ -1,28 +1,28 @@
 <!-- app/views/users/edit.html.erb -->
 <%= form_with model: @user, url: account_path, method: :put do |form| %>
   <%= render partial: "shared/form_errors", locals: { object: form.object } %>
-  <div>
+  <div class="flex-1 space-x-2 py-4">
     <%= form.label :email, "Current Email" %>
-    <%= form.email_field :email, disabled: true %>
+    <%= form.email_field :email, class: "input input-bordered w-full max-w-xs" %>
     <p>
       Be careful when changing your email address. You will need to confirm the new one in order to access your account.
     </p>
   </div>
-  <div>
+  <div class="flex-1 space-x-2 py-4">
     <%= form.label :nickname %>
-    <%= form.text_field :nickname, autofocus: :on, onfocus: "this.setSelectionRange(this.value.length,this.value.length);" %>
+    <%= form.text_field :nickname, autofocus: :on, onfocus: "this.setSelectionRange(this.value.length,this.value.length);", class: "input input-bordered w-full max-w-xs" %>
   </div>
-  <%= form.submit "Update Account" %>
+  <%= form.submit "Update Account", class: "btn btn-primary" %>
   <h4>PASSWORD CHANGE</h4>
-  <div>
+  <div class="flex-1 space-x-2 py-4">
     <%= form.label :current_password %>
-    <%= form.password_field :current_password, autocomplete: "current-password" %>
+    <%= form.password_field :current_password, autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
   </div>
-  <div>
+  <div class="flex-1 space-x-2 py-4">
     <%= form.label :password, "New Password" %>
-    <%= form.password_field :password, autocomplete: "new-password" %>
+    <%= form.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full max-w-xs" %>
   </div>
-  <%= form.submit "Change Password" %>
+  <%= form.submit "Change Password", class: "btn btn-outline btn-secondary" %>
   <h2>Current Logins</h2>
   <% if @active_sessions.any? %>
     <%= button_to "Log out of all other sessions", destroy_all_active_sessions_path, method: :delete %>
@@ -42,6 +42,6 @@
   <% end %>
   <h4>DANGER ZONE</h4>
   <div>
-    <%= link_to "Delete Account", account_path, data: { turbo_method: :delete, confirm: "Are you sure?" } %>
+    <%= link_to "Delete Account", account_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline btn-error" %>
   </div>
 <% end %>
