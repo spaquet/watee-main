@@ -236,7 +236,7 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
-  active_storage_validations
+  active_storage_validations (~> 0.9.8)
   argon2 (~> 2.1.1)
   bootsnap
   capybara
