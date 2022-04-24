@@ -1,3 +1,7 @@
+/* Trix CSS */
+@import 'actiontext.css';
+
+/* Tailwind CSS - MUST BE KEPT AT THE END OF THE FILE */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

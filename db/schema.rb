@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_23_234629) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_24_003858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -59,13 +69,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_23_234629) do
     t.boolean "shareable", default: false, null: false
     t.boolean "public", default: false, null: false
     t.integer "limit", default: 20, null: false
-    t.integer "status_id", default: 0, null: false
-    t.text "description"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["public"], name: "index_games_on_public"
     t.index ["shareable"], name: "index_games_on_shareable"
-    t.index ["status_id"], name: "index_games_on_status_id"
+    t.index ["status"], name: "index_games_on_status"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
