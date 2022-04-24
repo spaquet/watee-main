@@ -7,7 +7,6 @@ class CreateGames < ActiveRecord::Migration[7.0]
       t.boolean :public,    null: false, default: false
       t.integer :limit,     null: false, default: 20
       t.integer :status, null: false, default: 0
-      t.text    :description
 
       t.timestamps
 

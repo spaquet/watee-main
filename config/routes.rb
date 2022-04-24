@@ -36,4 +36,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # Games routes ("/games")
+  resources :games
+
 end

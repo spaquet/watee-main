@@ -1,0 +1,13 @@
+<!-- app/views/games/new.html.erb -->
+<%= form_with model: @game, url: games_path do |form| %>
+  <%= render partial: "shared/form_errors", locals: { object: form.object } %>
+  <div class="flex-1 space-x-2 py-4">
+    <%= form.label :name %>
+    <%= form.text_field :email, required: true, autofocus: :on, class: "input input-bordered w-full max-w-xs" %>
+  </div>
+  <div class="flex-1 space-x-2 py-4">
+    <%= form.label :description %>
+    <%= form.rich_text_area :description, class: "textarea textarea-bordered" %>
+  </div>
+  <%= form.submit "Create", class: "btn btn-primary" %>
+<% end %>
