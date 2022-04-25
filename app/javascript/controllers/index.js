@@ -3,3 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application";
+
+import NotificationController from "./notification_controller.js";
+application.register("notification", NotificationController);
