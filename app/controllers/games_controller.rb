@@ -10,7 +10,8 @@ class GamesController < ApplicationController
   end
 
   def create
-
+    flash[:success] = "Game created!"
+    redirect_to games_path
   end
 
   def edit
