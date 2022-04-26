@@ -4,7 +4,7 @@
   "dependencies": {
     "@hotwired/stimulus": "3.0.1",
     "@hotwired/turbo-rails": "7.1.1",
-    "@rails/actiontext": "6.1.5",
+    "@rails/actiontext": "7.0.2-4",
     "autoprefixer": "10.4.5",
     "daisyui": "2.14.2",
     "esbuild": "0.14.38",
