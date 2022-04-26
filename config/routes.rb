@@ -39,4 +39,8 @@ Rails.application.routes.draw do
   # Games routes ("/games")
   resources :games
 
+  # Play routes
+  get  "play/:id",               to: "play#index", as: "play_game"
+  post "join/:game_id/:user_id", to: "play#join",  as: "join_game"
+
 end
