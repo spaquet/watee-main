@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  belongs_to :user, class_name: "user", foreign_key: "user_id"
+  belongs_to :user
 
   has_rich_text :description
   has_one_attached :image
@@ -9,5 +9,5 @@ class Game < ApplicationRecord
   validates :image, content_type: ['image/png', 'image/jpeg', 'image/jpg'], 
                     size: { between: 1.kilobyte..10.megabytes , message: 'is not given between size' }
   
-  enum :status, { draft: 0, published: 10, archived: 20, trashed: 50 }
+  enum :status, { draft: 0, active: 10, archived: 20, trashed: 50 }
 end
