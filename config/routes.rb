@@ -43,4 +43,7 @@ Rails.application.routes.draw do
   get  "play/:id",               to: "play#index", as: "play_game"
   post "join/:game_id/:user_id", to: "play#join",  as: "join_game"
 
+  # Settings
+  get 'settings/index', as: "settings"
+
 end
