@@ -58,6 +58,9 @@ gem "active_storage_validations", "~> 0.9.8"
 gem "image_processing", "~> 1.2"
 gem "ruby-vips", ">= 2.1.0"
 
+# Generate QRCode
+gem "rqrcode", "~> 2.0"
+
 # Taggable
 gem "acts-as-taggable-on", "~> 9.0"
 
