@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'game_statuses/index'
   get 'confirmations/create'
   get 'confirmations/edit'
   get 'confirmations/new'
@@ -44,6 +45,9 @@ Rails.application.routes.draw do
   post "join/:game_id/:user_id", to: "play#join",  as: "join_game"
 
   # Settings
-  get 'settings/index', as: "settings"
+  get "settings/index", as: "settings"
+
+  # Game status / mgmt
+  get "game_statuses/index"
 
 end
