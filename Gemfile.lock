@@ -71,6 +71,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts-as-taggable-on (9.0.1)
+      activerecord (>= 6.0, < 7.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     argon2 (2.1.1)
@@ -237,6 +239,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations (~> 0.9.8)
+  acts-as-taggable-on (~> 9.0)
   argon2 (~> 2.1.1)
   bootsnap
   capybara
