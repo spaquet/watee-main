@@ -10,4 +10,5 @@ class Game < ApplicationRecord
                     size: { between: 1.kilobyte..10.megabytes , message: 'is not given between size' }
   
   enum :status, { draft: 0, active: 10, archived: 20, trashed: 50 }
+
 end
