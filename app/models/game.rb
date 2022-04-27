@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :user
 
-  has_rich_text :description
+  has_rich_text    :description
   has_one_attached :image
   
   validates :name,  presence: true, length: { maximum: 250 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_27_181030) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_27_204156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,31 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_181030) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "game_statuses", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "game_mgr_id", null: false
+    t.string "pin", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "start_time", precision: nil
+    t.datetime "end_time", precision: nil
+    t.boolean "close_game_after_last_question", default: false, null: false
+    t.boolean "sync_players", default: false, null: false
+    t.boolean "allow_unregistered_player", default: true, null: false
+    t.integer "highest_score"
+    t.bigint "highest_score_player_id"
+    t.datetime "highest_score_last_updated_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["allow_unregistered_player"], name: "index_game_statuses_on_allow_unregistered_player"
+    t.index ["close_game_after_last_question"], name: "index_game_statuses_on_close_game_after_last_question"
+    t.index ["game_id"], name: "index_game_statuses_on_game_id"
+    t.index ["game_mgr_id"], name: "index_game_statuses_on_game_mgr_id"
+    t.index ["highest_score_player_id"], name: "index_game_statuses_on_highest_score_player_id"
+    t.index ["pin"], name: "index_game_statuses_on_pin", unique: true
+    t.index ["status"], name: "index_game_statuses_on_status"
+    t.index ["sync_players"], name: "index_game_statuses_on_sync_players"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "user_id", null: false
@@ -85,6 +110,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_181030) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
     t.index ["owner"], name: "index_organizations_on_owner"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.string "email"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_players_on_email"
+    t.index ["user_id"], name: "index_players_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
