@@ -10,7 +10,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(game_params)
+    @game = Game.new(create_game_params)
     @game.user_id = current_user.id
     if @game.save
       redirect_to games_path, notice: "Game created successfully!"
@@ -29,7 +29,7 @@ class GamesController < ApplicationController
 
   def update
     if current_user.id == @game.user_id
-      if @game.update(game_params)
+      if @game.update(update_game_params)
         redirect_to games_path, notice: "Game updated successfully!"
       else
         render :edit, status: :unprocessable_entity
@@ -52,8 +52,12 @@ class GamesController < ApplicationController
 
   private
 
-  def game_params
-    params.require(:game).permit(:name, :description, :user_id, :shareable, :public, :status)
+  def update_game_params
+    params.require(:game).permit(:name, :description, :user_id, :shareable, :public, :status, :image)
+  end
+
+  def create_game_params
+    params.require(:game).permit(:name, :description, :shareable, :public, :status, :image)
   end
 
 end
