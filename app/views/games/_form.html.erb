@@ -18,6 +18,19 @@
     <%= form.label :public %>
     <%= form.check_box :public, class: "toggle toggle-primary" %>
   </div>
+  <div class="flex space-x-2 py-4" data-controller="image-uploader">
+    <%= form.label :image %>
+    <%= form.file_field :image, 
+        direct_upload: true,
+        accept: "image/png,image/gif,image/jpeg,image/jpg",
+        "data-image-uploader-target": "input", 
+        "data-action": "image-uploader#changed" %>
+    <div class="text-error hidden" data-image-uploader-target="error_message">
+      Error processing the image
+    </div>
+    <%= image_tag @game.image.variant(resize_to_limit: [100, 200]), "data-image-uploader-target": "image_preview" if @game.image.attached? %>
+    <%= content_tag :img, nil, src: nil, width: 100, height: 100, "data-image-uploader-target": "image_preview" unless @game.image.attached? %>
+  </div>
   <div class="flex-1 space-x-2 py-4">
     <%= form.label :description %>
     <%= form.rich_text_area :description, class: "textarea textarea-bordered h-80" %>
