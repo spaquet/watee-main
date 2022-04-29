@@ -7,5 +7,8 @@ import { application } from "./application"
 import ClipboardController from "./clipboard_controller.js"
 application.register("clipboard", ClipboardController)
 
+import ImageUploaderController from "./image_uploader_controller.js"
+application.register("image-uploader", ImageUploaderController)
+
 import NotificationController from "./notification_controller.js"
 application.register("notification", NotificationController)
