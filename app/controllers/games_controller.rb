@@ -28,6 +28,7 @@ class GamesController < ApplicationController
   end
 
   def update
+    @game = Game.find(params[:id])
     if current_user.id == @game.user_id
       if @game.update(update_game_params)
         redirect_to games_path, notice: "Game updated successfully!"
@@ -41,8 +42,9 @@ class GamesController < ApplicationController
   end
 
   def destroy
+    @game = Game.find(params[:id])
     if current_user.id == @game.user_id
-      Game.find(params[:id]).destroy
+      @game.destroy
     else
       flash.now[:alert] = "You are not authorized to delete this game."
       # render :edit, status: :unprocessable_entity

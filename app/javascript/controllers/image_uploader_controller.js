@@ -3,7 +3,7 @@ import { DirectUpload } from "@rails/activestorage";
 
 // Connects to data-controller="image-uploader"
 export default class extends Controller {
-  static targets = ["input", "image_preview", "error_message"];
+  static targets = ["input", "preview", "error_message"];
   connect() {}
 
   changed(event) {
@@ -20,6 +20,11 @@ export default class extends Controller {
 
       // Scan for image(s)
       const url = this.inputTarget.dataset.directUploadUrl;
+
+      // const token = event.target.dataset.directUploadToken;
+      // const attachmentName = event.target.dataset.directUploadAttachmentName;
+      // if the above is uncommented, then call DirectUpload(image, url, token, attachmentName)
+
       imagesArray.forEach((image, index) => {
         const upload = new DirectUpload(image, url);
         upload.create((error, blob) => {
@@ -29,7 +34,7 @@ export default class extends Controller {
             return;
           }
           this.hiddenInput().value = blob.signed_id;
-          this.image_previewTarget.src = `${this.getURL()}/${blob.signed_id}/${
+          this.previewTarget.src = `${this.getURL()}/${blob.signed_id}/${
             blob.filename
           }`;
         });
