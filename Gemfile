@@ -34,7 +34,7 @@ gem "jbuilder"
 gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-gem "kredis"
+gem "kredis", "~> 1.2.0"
 
 # Used to hash passwords [https://github.com/technion/ruby-argon2]
 gem "argon2", "~> 2.1.1"
