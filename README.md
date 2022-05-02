@@ -11,3 +11,4 @@ Authentication was build based on [https://stevepolito.design/blog/rails-authent
 [https://www.tailwindawesome.com/?price=free&type=template]
 [https://medium.com/@sylwiavargas/dark-mode-in-ruby-on-rails-with-cookies-c892ac52ebaa]
 [https://github.com/rails/request.js]
+Avatar as a service using Sprite: [https://github.com/ljvmiranda921/sprites-as-a-service]
