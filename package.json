@@ -7,7 +7,7 @@
     "@rails/actiontext": "7.0.2-4",
     "@rails/activestorage": "7.0.2-4",
     "@rails/request.js": "0.0.6",
-    "autoprefixer": "10.4.6",
+    "autoprefixer": "10.4.7",
     "daisyui": "2.14.3",
     "esbuild": "0.14.38",
     "postcss": "8.4.13",
