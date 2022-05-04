@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'game_statuses/index'
   get 'confirmations/create'
   get 'confirmations/edit'
@@ -39,6 +40,9 @@ Rails.application.routes.draw do
 
   # Games routes ("/games")
   resources :games
+
+  # Organizations routes ("/organizations")
+  resources :organizations, only: [:create, :edit, :new, :update, :destroy]
 
   # Play routes
   get  "play/:id",               to: "play#index", as: "play_game"

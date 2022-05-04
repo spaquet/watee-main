@@ -26,7 +26,7 @@ class User < ApplicationRecord
   # Validations
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: {with: URI::MailTo::EMAIL_REGEXP}
   validates :password, presence: true, length: { minimum: 6, maximum: 35 }, on: :create
-  validates :avatar, content_type: ['image/png', 'image/jpeg', 'image/jpg'], 
+  validates :avatar, content_type: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'], 
                     size: { between: 1.kilobyte..5.megabytes , message: 'is not given between size' }
 
   ## Functions
