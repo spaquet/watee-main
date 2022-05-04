@@ -13,11 +13,7 @@ class User < ApplicationRecord
   PASSWORD_RESET_TOKEN_EXPIRATION = 20.minutes
 
   # Relations
-  # belongs_to :organization,    optional: true
   has_many   :active_sessions, dependent: :destroy
-  has_many   :games,           dependent: :destroy
-  has_one    :player,          dependent: :destroy # Player is a one-to-one relationship
-
 
   # Active Storage & Action Text
   has_rich_text    :bio
@@ -30,6 +26,11 @@ class User < ApplicationRecord
                     size: { between: 1.kilobyte..5.megabytes , message: 'is not given between size' }
 
   ## Functions
+
+  # Return the user full name (first + last names)
+  def full_name
+    (self.first_name.capitalize + " " + self.last_name.capitalize).strip
+  end
 
   # Authenticate the user (aka validates the password)
   def authenticate(password)
