@@ -1,22 +1,31 @@
 <!-- app/views/users/new.html.erb -->
-<%= form_with model: @user, url: signup_path, html: { autocomplete: "on" } do |form| %>
-  <%= render partial: "shared/form_errors", locals: { object: form.object } %>
-  <div class="flex-1 space-x-2 py-4">
-    <%= form.label :email, class: "label-text" %>
-    <%= form.email_field :email, required: true, autofocus: :on, autocomplete: "email", placeholder: "ex. john@example.com", class: "input input-bordered w-full max-w-xs" %>
-  </div>
-  <div class="flex-1 space-x-2 py-4">
-    <%= form.label :nickname %>
-    <%= form.text_field :nickname, required: true, autocomplete: "nickname", placeholder: "ex. RobErTO", class: "input input-bordered w-full max-w-xs" %>
-  </div>
-  <div class="flex-1 space-x-2 py-4">
-    <%= form.label :password %>
-    <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-bordered w-full max-w-xs" %>
-  </div>
-  <%= form.submit "Sign Up", class: "btn btn-primary" %>
-<% end %>
-<div class="pt-3">
+<div class="flex flex-col justify-center items-center h-screen">
   <div>
-    <%= link_to "Already have an account, Sign in!", login_path, class: "link link-accent" %>
+    <h1>
+      Sign Up
+    </h1>
+  </div>
+  <div>
+    <%= form_with model: @user, url: signup_path, html: { autocomplete: "on" } do |form| %>
+      <%= render partial: "shared/form_errors", locals: { object: form.object } %>
+      <div class="space-y-4">
+        <%= form.label :email, class: "label-text" %>
+        <%= form.email_field :email, required: true, autofocus: :on, autocomplete: "email", placeholder: "ex. john@example.com", class: "input input-bordered w-full max-w-xs" %>
+      </div>
+      <div class="space-y-4 py-4">
+        <%= form.label :nickname %>
+        <%= form.text_field :nickname, required: true, autocomplete: "nickname", placeholder: "ex. RobErTO", class: "input input-bordered w-full max-w-xs" %>
+      </div>
+      <div class="space-y-4 py-4">
+        <%= form.label :password %>
+        <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-bordered w-full max-w-xs" %>
+      </div>
+      <%= form.submit "Sign Up", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="pt-3">
+    <div>
+      <%= link_to "Already have an account, Sign in!", login_path, class: "link link-accent" %>
+    </div>
   </div>
 </div>

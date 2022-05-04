@@ -1,5 +1,10 @@
 <!-- app/views/sessions/new.html.erb -->
-<div class="flex justify-center items-center h-screen">
+<div class="flex flex-col justify-center items-center h-screen">
+  <div>
+    <h1>
+      Login
+    </h1>
+  </div>
   <div>
     <%= form_with url: login_path, scope: :user do |form| %>
       <div class="space-y-4">
@@ -16,13 +21,13 @@
       </div>
       <%= form.submit "Sign In", class: "btn btn-primary mt-4" %>
     <% end %>
+  </div>
+  <div class="space-y-2 pt-3">
     <div>
-      <div class="space-y-2 pt-3">
-        <div>
-          <%= link_to "Forgot your password?", new_password_path, class: "link link-accent" %>
-        </div>
-        <div>
-          <%= link_to "No account? Create one for free!", signup_path, class: "link link-accent" %>
-        </div>
-      </div>
+      <%= link_to "Forgot your password?", new_password_path, class: "link link-accent" %>
     </div>
+    <div>
+      <%= link_to "No account? Create one for free!", signup_path, class: "link link-accent" %>
+    </div>
+  </div>
+</div>

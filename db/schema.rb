@@ -105,11 +105,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_204156) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
-    t.bigint "owner"
+    t.bigint "owner_id"
+    t.boolean "validated", default: false, null: false
+    t.string "domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_organizations_on_domain", unique: true
     t.index ["name"], name: "index_organizations_on_name", unique: true
-    t.index ["owner"], name: "index_organizations_on_owner"
+    t.index ["owner_id"], name: "index_organizations_on_owner_id"
+    t.index ["validated"], name: "index_organizations_on_validated"
   end
 
   create_table "players", force: :cascade do |t|
