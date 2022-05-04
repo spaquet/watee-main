@@ -10,7 +10,9 @@
   </head>
   <body>
     <%= render partial: "shared/main_navbar" %>
-    <%= render partial: "shared/flash_messages" %>
+    <div class="relative">
+      <%= render partial: "shared/flash_messages" %>
+    </div>
     <%= yield %>
   </body>
 </html>
