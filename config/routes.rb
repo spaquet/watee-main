@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   end
 
   # Games routes ("/games")
-  resources :games
 
   # Organizations routes ("/organizations")
   resources :organizations, only: [:create, :edit, :new, :update, :destroy]
