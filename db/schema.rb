@@ -97,6 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_181030) do
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "nickname"
+    t.string "first_name"
+    t.string "last_name"
     t.string "password_digest"
     t.boolean "blocked", default: false, null: false
     t.boolean "confirmed", default: false, null: false
