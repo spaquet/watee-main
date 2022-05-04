@@ -13,7 +13,7 @@ class User < ApplicationRecord
   PASSWORD_RESET_TOKEN_EXPIRATION = 20.minutes
 
   # Relations
-  belongs_to :organization,    optional: true
+  # belongs_to :organization,    optional: true
   has_many   :active_sessions, dependent: :destroy
   has_many   :games,           dependent: :destroy
   has_one    :player,          dependent: :destroy # Player is a one-to-one relationship

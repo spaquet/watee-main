@@ -4,8 +4,8 @@
   </div>
   <% if user_signed_in? %>
     <div class="flex-1">
-      <%= link_to "Create a Game", new_game_path, class: "btn btn-ghost normal-case text-xl" %>
-      <%= link_to "Your Games", games_path, class: "btn btn-ghost normal-case text-xl" %>
+      <%= link_to "Create a Game", nil, class: "btn btn-ghost normal-case text-xl" %>
+      <%= link_to "Your Games", nil, class: "btn btn-ghost normal-case text-xl" %>
     </div>
   <% else %>
     <div class="flex-1">
@@ -21,7 +21,7 @@
           </div>
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-          <li><%= link_to "Games", games_path %></li>
+          <li><%= link_to "Games", nil %></li>
           <li><%= link_to "Profile", account_path %></li>
           <li><%= link_to "Settings", settings_path %></li>
           <div class="divider"></div>
