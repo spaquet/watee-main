@@ -159,7 +159,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.4-arm64-darwin)
+    nokogiri (1.13.5-arm64-darwin)
       racc (~> 1.4)
     pagy (5.10.1)
       activesupport
