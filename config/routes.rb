@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'game_statuses/index'
-  get 'confirmations/create'
-  get 'confirmations/edit'
-  get 'confirmations/new'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -38,19 +34,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # Games routes ("/games")
-
-  # Organizations routes ("/organizations")
-  resources :organizations, only: [:create, :edit, :new, :update, :destroy]
-
-  # Play routes
-  get  "play/:id",               to: "play#index", as: "play_game"
-  post "join/:game_id/:user_id", to: "play#join",  as: "join_game"
-
-  # Settings
-  get "settings/index", as: "settings"
-
-  # Game status / mgmt
-  get "game_statuses/index"
+  # Games routes ("/quizzes")
+  resources :quizzes
 
 end
