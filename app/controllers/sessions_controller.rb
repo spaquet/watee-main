@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
       if !@user.confirmed
-        redirect_to new_confirmation_path, alert: "Incorrect email or password."
+        redirect_to new_confirmation_path, alert: "You must confirm your email before being able to login."
       elsif @user.locked
         redirect_to :new, alert: "Your account is locked."
       else
