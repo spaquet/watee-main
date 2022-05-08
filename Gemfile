@@ -30,7 +30,7 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-#
+# ActiveRecord JSON validator [https://github.com/mirego/activerecord_json_validator]
 gem "activerecord_json_validator", "~> 2.1.0"
 
 # Use Redis adapter to run Action Cable in production
