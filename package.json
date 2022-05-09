@@ -4,8 +4,8 @@
   "dependencies": {
     "@hotwired/stimulus": "3.0.1",
     "@hotwired/turbo-rails": "7.1.1",
-    "@rails/actiontext": "7.0.2-4",
-    "@rails/activestorage": "7.0.2-4",
+    "@rails/actiontext": "7.0.3",
+    "@rails/activestorage": "7.0.3",
     "@rails/request.js": "0.0.6",
     "autoprefixer": "10.4.7",
     "daisyui": "2.14.3",
