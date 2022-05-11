@@ -13,7 +13,9 @@ class User < ApplicationRecord
   PASSWORD_RESET_TOKEN_EXPIRATION = 20.minutes
 
   # Relations
-  has_many   :active_sessions, dependent: :destroy
+  has_many :quizzes, dependent: :destroy
+  has_many :active_sessions, dependent: :destroy
+  has_one  :setting, dependent: :destroy
 
   # Active Storage & Action Text
   has_rich_text    :bio

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_27_181030) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_11_195128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,12 +63,51 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_181030) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.bigint "quiz_id", null: false
+    t.string "title"
+    t.integer "question_type", null: false
+    t.jsonb "answers", default: "{}", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_type"], name: "index_questions_on_question_type"
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "user_id", null: false
+    t.boolean "public", default: false, null: false
+    t.boolean "timed", default: false, null: false
+    t.integer "time_sec", null: false
+    t.integer "status", default: 0, null: false
+    t.boolean "free", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["public", "status"], name: "index_quizzes_on_public_and_status"
+    t.index ["public"], name: "index_quizzes_on_public"
+    t.index ["status"], name: "index_quizzes_on_status"
+    t.index ["user_id", "public", "status"], name: "index_quizzes_on_user_id_and_public_and_status"
+    t.index ["user_id"], name: "index_quizzes_on_user_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "theme", default: 0, null: false
+    t.string "lang", default: "en", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lang"], name: "index_settings_on_lang"
+    t.index ["theme"], name: "index_settings_on_theme"
+    t.index ["user_id"], name: "index_settings_on_user_id", unique: true
+  end
+
   create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id"
+    t.bigint "tag_id"
     t.string "taggable_type"
-    t.integer "taggable_id"
+    t.bigint "taggable_id"
     t.string "tagger_type"
-    t.integer "tagger_id"
+    t.bigint "tagger_id"
     t.string "context", limit: 128
     t.datetime "created_at", precision: nil
     t.string "tenant", limit: 128
@@ -118,5 +157,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_181030) do
   add_foreign_key "active_sessions", "users", on_delete: :cascade
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quizzes", "users"
+  add_foreign_key "settings", "users"
   add_foreign_key "taggings", "tags"
 end

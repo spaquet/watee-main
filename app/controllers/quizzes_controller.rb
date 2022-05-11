@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes or /quizzes.json
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.where(user_id: current_user.id)
   end
 
   # GET /quizzes/1 or /quizzes/1.json
@@ -22,6 +22,7 @@ class QuizzesController < ApplicationController
   # POST /quizzes or /quizzes.json
   def create
     @quiz = Quiz.new(quiz_params)
+    @quiz.user_id = current_user.id # set the user_id to the current user
 
     respond_to do |format|
       if @quiz.save
@@ -37,6 +38,11 @@ class QuizzesController < ApplicationController
   # PATCH/PUT /quizzes/1 or /quizzes/1.json
   def update
     respond_to do |format|
+      if @quiz.user_id != current_user.id
+        format.html { redirect_to quiz_url(@quiz), notice: "You cannot update a Quiz that is not yours." }
+        format.json { render :show, status: :ok, location: @quiz }
+        return
+      end
       if @quiz.update(quiz_params)
         format.html { redirect_to quiz_url(@quiz), notice: "Quiz was successfully updated." }
         format.json { render :show, status: :ok, location: @quiz }
@@ -65,6 +71,7 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.fetch(:quiz, {})
+      # params.fetch(:quiz, {})
+      params.require(:quiz).permit(:title, :description, :image, :public, :status)
     end
 end
