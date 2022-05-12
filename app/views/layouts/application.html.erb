@@ -13,6 +13,9 @@
     <div class="relative">
       <%= render partial: "shared/flash_messages" %>
     </div>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <%= render partial: "shared/footer" %>
   </body>
 </html>
