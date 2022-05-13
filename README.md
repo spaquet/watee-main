@@ -17,3 +17,5 @@ Authentication was build based on [https://stevepolito.design/blog/rails-authent
 Avatar as a service using Sprite: [https://github.com/ljvmiranda921/sprites-as-a-service]
 
 [https://dev.to/kputra/rails-postgresql-jsonb-part-1-4ibg#chapter-4]
+
+Tinygraphs is actually used to generat random generic shapes to replace missing avatar [https://github.com/taironas/tinygraphs]

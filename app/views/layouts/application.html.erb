@@ -16,6 +16,12 @@
     <main>
       <%= yield %>
     </main>
-    <%= render partial: "shared/footer" %>
+    <div class="fixed inset-x-0 bottom-0">
+      <% if user_signed_in? %>
+        <%= render partial: "shared/footer_short" %>
+      <% else %>
+        <%= render partial: "shared/footer" %>
+      <% end %>
+    </div>
   </body>
 </html>
