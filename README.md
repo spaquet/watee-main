@@ -19,3 +19,5 @@ Avatar as a service using Sprite: [https://github.com/ljvmiranda921/sprites-as-a
 [https://dev.to/kputra/rails-postgresql-jsonb-part-1-4ibg#chapter-4]
 
 Tinygraphs is actually used to generat random generic shapes to replace missing avatar [https://github.com/taironas/tinygraphs]
+
+Layout based on [https://github.com/cruip/tailwind-landing-page-template]
