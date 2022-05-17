@@ -9,19 +9,21 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
-    <%= render partial: "shared/main_navbar" %>
-    <div class="relative">
-      <%= render partial: "shared/flash_messages" %>
-    </div>
-    <main>
-      <%= yield %>
-    </main>
-    <div class="fixed inset-x-0 bottom-0">
-      <% if user_signed_in? %>
-        <%= render partial: "shared/footer_short" %>
-      <% else %>
-        <%= render partial: "shared/footer" %>
-      <% end %>
+    <div class="flex flex-col min-h-screen overflow-hidden">
+      <%= render partial: "shared/main_navbar" %>
+      <div class="relative top-1">
+        <%= render partial: "shared/flash_messages" %>
+      </div>
+      <main class="flex-grow">
+        <%= yield %>
+      </main>
+      <div>
+        <% if user_signed_in? %>
+          <%= render partial: "shared/footer_short" %>
+        <% else %>
+          <%= render partial: "shared/footer" %>
+        <% end %>
+      </div>
     </div>
   </body>
 </html>
