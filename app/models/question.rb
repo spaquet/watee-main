@@ -23,9 +23,10 @@ class Question < ApplicationRecord
     "drag_and_drop": 70,
     "matching": 80,
     "ordering": 90,
-    "audio": 100,
-    "video": 110,
-    "essay": 120,
+    "poll": 100
+    "audio": 110,
+    "video": 120,
+    "essay": 130,
   } 
 
 end
