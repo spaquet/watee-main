@@ -20,4 +20,4 @@ Avatar as a service using Sprite: [https://github.com/ljvmiranda921/sprites-as-a
 
 Tinygraphs is actually used to generat random generic shapes to replace missing avatar [https://github.com/taironas/tinygraphs]
 
-Layout based on [https://github.com/cruip/tailwind-landing-page-template]
+Layout based on [https://github.com/cruip/tailwind-landing-page-template] & Example: [https://simple.cruip.com/]
