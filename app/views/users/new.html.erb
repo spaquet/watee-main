@@ -1,31 +1,33 @@
 <!-- app/views/users/new.html.erb -->
-<div class="sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+<div class="mx-auto max-w-lg">
   <div class="flex flex-col items-center pt-28">
-    <h1>
-      Sign Up
-    </h1>
-  </div>
-  <div class="flex flex-col mt-4">
-    <%= form_with model: @user, url: signup_path, html: { autocomplete: "on" } do |form| %>
-      <%= render partial: "shared/form_errors", locals: { object: form.object } %>
-      <div class="space-y-2">
-        <div><%= form.label :email, class: "label-text" %></div>
-        <%= form.email_field :email, required: true, autofocus: :on, autocomplete: "email", placeholder: "ex. john@example.com", class: "input input-bordered w-full max-w-xs" %>
-      </div>
-      <div class="space-y-2 py-4">
-        <div><%= form.label :nickname, class: "label-text" %></div>
-        <%= form.text_field :nickname, required: true, autocomplete: "nickname", placeholder: "ex. RobErTO", class: "input input-bordered w-full max-w-xs" %>
-      </div>
-      <div class="space-y-2">
-        <div><%= form.label :password, class: "label-text" %></div>
-        <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-bordered w-full max-w-xs" %>
-      </div>
-      <%= form.submit "Sign Up", class: "btn btn-primary mt-4" %>
-    <% end %>
-  </div>
-  <div class="pt-3">
     <div>
-      <%= link_to "Already have an account, Sign in!", login_path, class: "link link-accent" %>
+      <h1>
+        Sign Up
+      </h1>
+    </div>
+    <div class="flex flex-col mt-4 w-72">
+      <%= form_with model: @user, url: signup_path, html: { autocomplete: "on" } do |form| %>
+        <%= render partial: "shared/form_errors", locals: { object: form.object } %>
+        <div class="space-y-2">
+          <div><%= form.label :email, class: "label-text" %></div>
+          <%= form.email_field :email, required: true, autofocus: :on, autocomplete: "email", placeholder: "ex. john@example.com", class: "input input-bordered w-full" %>
+        </div>
+        <div class="space-y-2 py-4">
+          <div><%= form.label :nickname, class: "label-text" %></div>
+          <%= form.text_field :nickname, required: true, autocomplete: "nickname", placeholder: "ex. RobErTO", class: "input input-bordered w-full" %>
+        </div>
+        <div class="space-y-2">
+          <div><%= form.label :password, class: "label-text" %></div>
+          <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-bordered w-full" %>
+        </div>
+        <%= form.submit "Sign Up", class: "btn btn-primary mt-4" %>
+      <% end %>
+    </div>
+    <div class="pt-3">
+      <div>
+        <%= link_to "Already have an account, Sign in!", login_path, class: "link link-accent" %>
+      </div>
     </div>
   </div>
 </div>
